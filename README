@@ -1,0 +1,29 @@
+# Ruby Base classes for RubyMotion
+
+A lot of rubygems require on Ruby base classes like Base64 or OpenSSL for their core functionality.
+As these are not available in Rubymotion, either a full Ruby implementation is needed or a wrapper, wrapping the Ruby dsl onto native ios functions.
+
+The goal of this project is to see if this can be done.
+
+# Working
+ - Base64 - taken from Rubinius core (BSD Licensed)
+
+# Work in Progress
+ - Openssl - taken from Rubinius core
+ - Convert to Cocoapod
+ - Make loading less obtrusive than it is now
+
+# Installation
+
+- git clone as submodule to /vendor/ruby_base_motion/
+- example Rakefile
+
+    $:.unshift("/Library/RubyMotion/lib")
+    require 'motion/project'
+    require 'vendor/ruby_base_motion/init_motion.rb'
+
+    Motion::Project::App.setup do |app|
+      # This allows requiring & adding frameworks.
+      Ruby::Base::Motion.new(app)
+    end
+
